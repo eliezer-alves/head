@@ -1,4 +1,4 @@
-import { Main, Page } from '../../components'
+import { Main, Page } from '@/presentaion/components'
 
 export const SignUp = () => {
   return (
