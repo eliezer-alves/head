@@ -1,5 +1,5 @@
 import { RemoteAddAccount } from '@/data/usecases'
-import { HttpStatusCode } from '@/data/protocols/http'
+import { HttpStatus } from '@/data/protocols/http'
 import { EmailInUseError, UnexpectedError } from '@/domain/errors'
 import { mockAddAccountParams, mockAddAccountModel } from '@/tests/domain/mocks'
 import { HttpClientSpy } from '@/tests/data/mocks'
@@ -36,7 +36,7 @@ describe('RemoteAddAccount', () => {
   test('Should throw EmailInUseError if HttpClient returns 403', async () => {
     const { sut, httpClientSpy } = makeSut()
     httpClientSpy.response = {
-      statusCode: HttpStatusCode.forbidden,
+      status: HttpStatus.forbidden,
     }
 
     const promise = sut.add(mockAddAccountParams())
@@ -47,7 +47,7 @@ describe('RemoteAddAccount', () => {
   test('Should throw UnexpectedError if HttpClient returns 400', async () => {
     const { sut, httpClientSpy } = makeSut()
     httpClientSpy.response = {
-      statusCode: HttpStatusCode.badRequest,
+      status: HttpStatus.badRequest,
     }
 
     const promise = sut.add(mockAddAccountParams())
@@ -58,7 +58,7 @@ describe('RemoteAddAccount', () => {
   test('Should throw UnexpectedError if HttpClient returns 500', async () => {
     const { sut, httpClientSpy } = makeSut()
     httpClientSpy.response = {
-      statusCode: HttpStatusCode.serverError,
+      status: HttpStatus.serverError,
     }
 
     const promise = sut.add(mockAddAccountParams())
@@ -69,7 +69,7 @@ describe('RemoteAddAccount', () => {
   test('Should throw UnexpectedError if HttpClient returns 404', async () => {
     const { sut, httpClientSpy } = makeSut()
     httpClientSpy.response = {
-      statusCode: HttpStatusCode.notFound,
+      status: HttpStatus.notFound,
     }
 
     const promise = sut.add(mockAddAccountParams())
@@ -81,7 +81,7 @@ describe('RemoteAddAccount', () => {
     const { sut, httpClientSpy } = makeSut()
     const httpResult = mockAddAccountModel()
     httpClientSpy.response = {
-      statusCode: HttpStatusCode.ok,
+      status: HttpStatus.ok,
       body: httpResult,
     }
 

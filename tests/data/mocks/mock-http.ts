@@ -1,7 +1,7 @@
 import {
   HttpRequest,
   HttpResponse,
-  HttpStatusCode,
+  HttpStatus,
   HttpClient,
 } from '@/data/protocols/http'
 
@@ -20,7 +20,7 @@ export class HttpClientSpy<R = any> implements HttpClient<R> {
   body?: any
   headers?: any
   response: HttpResponse<R> = {
-    statusCode: HttpStatusCode.ok,
+    status: HttpStatus.ok,
   }
 
   async request(data: HttpRequest): Promise<HttpResponse<R>> {

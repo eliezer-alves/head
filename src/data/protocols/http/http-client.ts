@@ -11,7 +11,7 @@ export interface HttpClient<R = any> {
 
 export type HttpMethod = 'post' | 'get' | 'put' | 'delete'
 
-export enum HttpStatusCode {
+export enum HttpStatus {
   ok = 200,
   noContent = 204,
   badRequest = 400,
@@ -22,6 +22,6 @@ export enum HttpStatusCode {
 }
 
 export type HttpResponse<T = any> = {
-  statusCode: HttpStatusCode
+  status: HttpStatus
   body?: T
 }
