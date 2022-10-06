@@ -10,13 +10,11 @@
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage",
-    "clear_jest": "jest --clearCache"
+    "test:ci": "npm test -- --coverage"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",
     "appwrite": "^10.1.0",
-    "firebase": "^9.10.0",
     "jest": "^29.1.2",
     "path": "^0.12.7",
     "react": "^18.2.0",
