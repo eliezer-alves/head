@@ -5,6 +5,10 @@ const mockId = (): string => {
   return faker.random.alphaNumeric(10)
 }
 
+const mockPath = (): string => {
+  return faker.internet.url()
+}
+
 export const mockAddDocResponse = (): any => ({
   id: mockId(),
 })
@@ -47,7 +51,20 @@ export class MockFirestore {
     return this.mockedFirestore
   }
 
-  public mockGetDoc(id = mockId(), expectedResponse = mockGetDocResponse(), exists = true) {
+  public mockDoc(id = mockId(), path = mockPath()) {
+    this.mockedFirestore.doc.mockImplementation(
+      jest.fn().mockImplementation(() => ({
+        id,
+        path,
+      }))
+    )
+  }
+
+  public mockGetDoc(
+    id = mockId(),
+    expectedResponse = mockGetDocResponse(),
+    exists = true
+  ) {
     if (this.isError) {
       this.mockedFirestore.getDoc.mockClear().mockImplementation(() => {
         throw new FirestoreError(this.errorCode, this.errorMessage)
@@ -63,8 +80,8 @@ export class MockFirestore {
             exists: () => {
               return exists
             },
-          }),
-        ),
+          })
+        )
       )
     }
 

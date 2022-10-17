@@ -1,6 +1,6 @@
 import { HttpClient, HttpRequest, HttpStatus } from '@/data/protocols/http'
 import { AdapterFirestore } from '@/infra/Firebase'
-import { mockAddAccountParams } from '../domain/mocks'
+import { mockAddAccountParams } from '../../domain/mocks'
 import { FirestoreErrorCode, mockAddDocResponse, MockFirestore } from './mocks'
 
 jest.mock('firebase/firestore')
@@ -26,14 +26,14 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe('AdapterHttpFirestore', () => {
+describe('AdapterHttpFirestoreCreate', () => {
   test('Should call firebase with correct values', async () => {
     const { sut, mockFirestore } = makeSut()
-    const mockedPush = mockFirestore.mockAddDock()
+    const mockedFirebaseSDK = mockFirestore.mockAddDock()
 
     await sut.request(addNewUserRequest)
 
-    expect(mockedPush.addDoc).toHaveBeenCalledWith(
+    expect(mockedFirebaseSDK.addDoc).toHaveBeenCalledWith(
       undefined,
       addNewUserRequest.body
     )
