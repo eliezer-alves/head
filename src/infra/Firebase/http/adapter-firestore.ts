@@ -4,10 +4,15 @@ import {
   HttpResponse,
   HttpStatus,
 } from '@/data/protocols/http'
-import { AccessDeniedError, UnexpectedError } from '@/domain/errors'
 
 import { db } from '../config/connection'
-import { addDoc, collection, DocumentReference } from 'firebase/firestore'
+import {
+  addDoc,
+  deleteDoc,
+  doc,
+  collection,
+  DocumentReference,
+} from 'firebase/firestore'
 
 type ExpectedCreateResponse = {
   id: string
@@ -32,7 +37,7 @@ export class AdapterFirestore implements HttpClient {
     }
   }
 
-  async create(ref: string, data: any): Promise<void> {
+  async #addDoc(ref: string, data: any): Promise<void> {
     let firestoreResponse: DocumentReference<any>
 
     firestoreResponse = await addDoc(collection(db, ref), data)
@@ -49,11 +54,23 @@ export class AdapterFirestore implements HttpClient {
     }
   }
 
+  async #deleteDoc(ref: string, id: string): Promise<void> {
+    try {
+      const docRef = doc(db, ref, id)
+      await deleteDoc(docRef)
+    } catch (e: any) {
+      this.changeResponseError(e)
+    }
+  }
+
   async request(data: HttpRequest): Promise<HttpResponse> {
     try {
       switch (data.method) {
         case 'post':
-          await this.create(data.url, data.body)
+          await this.#addDoc(data.url, data.body)
+          break
+        case 'delete':
+          await this.#deleteDoc(data.url, data.body.id)
           break
         default:
           break
@@ -61,7 +78,6 @@ export class AdapterFirestore implements HttpClient {
     } catch (e: any) {
       this.changeResponseError(e)
     }
-
     return this.response
   }
 }
