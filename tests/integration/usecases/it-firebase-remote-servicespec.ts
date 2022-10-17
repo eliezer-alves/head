@@ -1,4 +1,3 @@
-import { HttpStatus } from '@/data/protocols/http'
 import { RemoteAddAccount } from '@/data/usecases'
 import { AdapterFirestore } from '@/infra/Firebase'
 import { mockAddAccountParams, mockAddAccountModel } from '@/tests/domain/mocks'
