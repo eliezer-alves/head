@@ -1,16 +1,17 @@
-import { HttpClient, HttpRequest } from '@/data/protocols/http'
+import { HttpClient, HttpRequest, HttpStatus } from '@/data/protocols/http'
 import { AdapterFirestore } from '@/infra/Firebase'
-import { mockDeleteHttpRequest } from '../../data/mocks'
-import { mockAddAccountParams } from '../../domain/mocks'
-import { MockFirestore } from './mocks'
+import { FirestoreErrorCode, MockFirestore } from './mocks'
+import { faker } from '@faker-js/faker'
 
 jest.mock('firebase/firestore')
 
-const addNewUserRequest: HttpRequest = {
-  url: 'users/',
+const mockDeleteHttpRequest = (): HttpRequest => ({
+  url: faker.internet.url(),
   method: 'delete',
-  body: mockAddAccountParams(),
-}
+  body: {
+    id: faker.datatype.uuid(),
+  },
+})
 
 type SutTypes = {
   sut: HttpClient
@@ -48,28 +49,38 @@ describe('AdapterHttpFirestoreDelete', () => {
     })
   })
 
-  // test('Should return correct response', async () => {
-  //   const { sut, mockFirestore } = makeSut()
-  //   const addDockResponse = mockAddDocResponse()
-  //   const expectedResponse = {
-  //     status: HttpStatus.ok,
-  //     body: addDockResponse,
-  //   }
+  test('Should return correct response', async () => {
+    const { sut, mockFirestore } = makeSut()
+    const deleteRequest = mockDeleteHttpRequest()
+    const expectedResponse = {
+      status: HttpStatus.ok,
+    }
 
-  //   mockFirestore.mockAddDock(addDockResponse)
+    mockFirestore.mockDoc(deleteRequest.body.id, deleteRequest.url)
+    mockFirestore.mockDeleteDoc()
 
-  //   const response = await sut.request(addNewUserRequest)
+    const response = await sut.request(deleteRequest)
 
-  //   expect(expectedResponse).toEqual(response)
-  // })
+    expect(expectedResponse).toEqual(response)
+  })
 
-  // test('Should returns 401 if firebase returns PERMISSION_DENIED', async () => {
-  //   const { sut, mockFirestore } = makeSut()
-  //   mockFirestore.throwError(FirestoreErrorCode.PERMISSION_DENIED)
-  //   mockFirestore.mockAddDock()
+  test('Should returns 401 if firebase returns PERMISSION_DENIED', async () => {
+    const { sut, mockFirestore } = makeSut()
+    mockFirestore.throwError(FirestoreErrorCode.PERMISSION_DENIED)
+    mockFirestore.mockDeleteDoc()
 
-  //   const response = await sut.request(addNewUserRequest)
+    const response = await sut.request(mockDeleteHttpRequest())
 
-  //   expect(response.status).toBe(HttpStatus.unauthorized)
-  // })
+    expect(response.status).toBe(HttpStatus.unauthorized)
+  })
+
+  test('Should return 400 if Firebase returns any errors', async () => {
+    const { sut, mockFirestore } = makeSut()
+    mockFirestore.throwError(FirestoreErrorCode.ANY)
+    mockFirestore.mockDeleteDoc()
+
+    const response = await sut.request(mockDeleteHttpRequest())
+
+    expect(response.status).toBe(HttpStatus.badRequest)
+  })
 })
