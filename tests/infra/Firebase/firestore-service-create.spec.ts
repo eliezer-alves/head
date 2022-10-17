@@ -63,4 +63,14 @@ describe('AdapterHttpFirestoreCreate', () => {
 
     expect(response.status).toBe(HttpStatus.unauthorized)
   })
+
+  test('Should return 400 if Firebase returns any errors', async () => {
+    const { sut, mockFirestore } = makeSut()
+    mockFirestore.throwError(FirestoreErrorCode.ANY)
+    mockFirestore.mockAddDock()
+
+    const response = await sut.request(addNewUserRequest)
+
+    expect(response.status).toBe(HttpStatus.badRequest)
+  })
 })
