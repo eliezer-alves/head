@@ -46,6 +46,17 @@ body {
 }
 
 /* ___________________________________________________ */
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-col-center {
+  @apply flex flex-col justify-center items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
 
 textarea:focus,
 input:focus,
@@ -73,6 +84,13 @@ h3 {
   @apply text-gray-400 text-xl;
 }
 
+.error {
+  @apply border-red-200  
+  hover:border-red-300
+  focus:border-red-400
+  text-red-500;
+}
+
 input {
   @apply m-1 py-3 px-6
   border-3 rounded-md
@@ -96,18 +114,6 @@ textarea {
   mobile:px-2;
 }
 
-.flex-center {
-  @apply flex justify-center items-center;
-}
-
-.flex-col-center {
-  @apply flex flex-col justify-center items-center;
-}
-
-.flex-between {
-  @apply flex justify-between items-center;
-}
-
 .btn-sm {
   @apply py-1 px-4
   rounded-md
@@ -123,6 +129,12 @@ textarea {
   hover:opacity-70
   duration-200 ease-in-out
   mobile:px-4;
+}
+
+.btn:disabled {
+  @apply bg-gray-300
+  text-gray-400
+  pointer-events-none;
 }
 
 .btn-primary {
