@@ -34,10 +34,16 @@
     "@vitejs/plugin-react": "^2.1.0",
     "autoprefixer": "^10.4.12",
     "git-commit-msg-linter": "^4.2.1",
+    "jest-environment-jsdom": "^29.2.1",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.17",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.6.4",
     "vite": "^3.1.0"
+  },
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true
+    }
   }
 }
