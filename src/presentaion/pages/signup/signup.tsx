@@ -1,4 +1,4 @@
-import { Main, Page } from '@/presentaion/components'
+import { Input, Main, Page } from '@/presentaion/components'
 
 export const SignUp = () => {
   return (
@@ -6,19 +6,28 @@ export const SignUp = () => {
       <Main>
         <h2 className="mb-10">Sign Up!</h2>
         <form>
-          <input type="text" placeholder="username" className="w-full mb-2" />
-          <input type="text" placeholder="e-mail" className="w-full mb-2" />
+          <Input
+            placeholder="username*"
+            isValid={false}
+            errorMessage={'Campo inválido*'}
+          />
+          <input type="text" placeholder="e-mail*" className="w-full mb-2" />
           <input
             type="password"
-            placeholder="password"
+            placeholder="password*"
             className="w-full mb-2"
           />
           <input
-            type="password"
-            placeholder="confirm password"
+            type="password*"
+            placeholder="confirm password*"
             className="w-full mb-2"
           />
-          <button type="submit" className="btn btn-primary w-full">
+          <button
+            data-testid="submit"
+            disabled
+            type="submit"
+            className="btn btn-primary w-full"
+          >
             &emsp;GO&emsp;
           </button>
         </form>
