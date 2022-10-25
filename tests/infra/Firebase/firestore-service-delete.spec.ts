@@ -40,7 +40,7 @@ describe('AdapterHttpFirestoreDelete', () => {
     expect(mockedFirebaseSDK.doc).toHaveBeenCalledWith(
       undefined,
       deleteRequest.url,
-      deleteRequest.body.id
+      deleteRequest.body.id,
     )
 
     expect(mockedFirebaseSDK.deleteDoc).toHaveBeenCalledWith({

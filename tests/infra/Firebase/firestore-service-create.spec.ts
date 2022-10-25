@@ -35,7 +35,7 @@ describe('AdapterHttpFirestoreCreate', () => {
 
     expect(mockedFirebaseSDK.addDoc).toHaveBeenCalledWith(
       undefined,
-      addNewUserRequest.body
+      addNewUserRequest.body,
     )
   })
 

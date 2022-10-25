@@ -14,10 +14,6 @@ import {
   DocumentReference,
 } from 'firebase/firestore'
 
-type ExpectedCreateResponse = {
-  id: string
-}
-
 export class AdapterFirestore implements HttpClient {
   public response: HttpResponse<any> = {
     status: HttpStatus.ok,

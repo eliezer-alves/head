@@ -6,5 +6,5 @@ import { Router } from './main/routes/router'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Router />
-  </React.StrictMode>
+  </React.StrictMode>,
 )

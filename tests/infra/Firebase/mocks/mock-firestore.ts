@@ -56,14 +56,14 @@ export class MockFirestore {
       jest.fn().mockImplementation(() => ({
         id,
         path,
-      }))
+      })),
     )
   }
 
   public mockGetDoc(
     id = mockId(),
     expectedResponse = mockGetDocResponse(),
-    exists = true
+    exists = true,
   ) {
     if (this.isError) {
       this.mockedFirestore.getDoc.mockClear().mockImplementation(() => {
@@ -80,8 +80,8 @@ export class MockFirestore {
             exists: () => {
               return exists
             },
-          })
-        )
+          }),
+        ),
       )
     }
 

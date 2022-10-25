@@ -2,38 +2,39 @@
     "root": true,
     "parser": "@typescript-eslint/parser",
     "plugins": [
-      "react",
-      "@typescript-eslint",
-      "prettier"
+        "react",
+        "@typescript-eslint",
+        "prettier"
     ],
     "extends": [
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended"
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
     ],
     "ignorePatterns": [
-      "*.js"
+        "*.js"
     ],
     "globals": {
-      "process": true,
-      "document": true
+        "process": true,
+        "document": true
     },
     "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "semi": false,
-          "singleQuote": true,
-          "endOfLine": "auto"
-        }
-      ],
-      "prefer-const": "off",
-      "linebreak-style": "off",
-      "no-console": "warn",
-      "react/react-in-jsx-scope": "off",
-      "react/jsx-uses-react": "off",
-      "@typescript-eslint/consistent-type-definitions": "off",
-      "@typescript-eslint/strict-boolean-expressions": "off",
-      "@typescript-eslint/no-explicit-any": "off"
+        "prettier/prettier": [
+            "error",
+            {
+                "semi": false,
+                "singleQuote": true,
+                "endOfLine": "auto"
+            }
+        ],
+        "prefer-const": "off",
+        "linebreak-style": "off",
+        "no-console": "warn",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-uses-react": "off",
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-namespace": "warn"
     }
-  }
+}
