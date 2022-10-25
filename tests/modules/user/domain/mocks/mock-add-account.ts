@@ -1,5 +1,5 @@
-import { AddAccount } from '@/domain/usecases'
-import { mockAccountModel } from '@/tests/domain/mocks'
+import { AddAccount } from '@/user/domain/usecases'
+import { mockAccountModel } from '@/../tests/modules/user/domain/mocks'
 
 import { faker } from '@faker-js/faker'
 

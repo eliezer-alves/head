@@ -1,6 +1,9 @@
-import { RemoteAddAccount } from '@/data/usecases'
+import { RemoteAddAccount } from '@/user/data/usecases'
 import { AdapterFirestore } from '@/infra/Firebase'
-import { mockAddAccountParams, mockAddAccountModel } from '@/tests/domain/mocks'
+import {
+  mockAddAccountParams,
+  mockAddAccountModel,
+} from '@/../tests/modules/user/domain/mocks'
 
 const context = {
   id: null,

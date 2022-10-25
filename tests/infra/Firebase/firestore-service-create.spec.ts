@@ -1,6 +1,6 @@
 import { HttpClient, HttpRequest, HttpStatus } from '@/common/http'
 import { AdapterFirestore } from '@/infra/Firebase'
-import { mockAddAccountParams } from '../../domain/mocks'
+import { mockAddAccountParams } from '../../modules/user/domain/mocks'
 import { FirestoreErrorCode, mockAddDocResponse, MockFirestore } from './mocks'
 
 jest.mock('firebase/firestore')
