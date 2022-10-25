@@ -1,4 +1,4 @@
-import { HttpClient, HttpRequest, HttpStatus } from '@/data/protocols/http'
+import { HttpClient, HttpRequest, HttpStatus } from '@/common/http'
 import { AdapterFirestore } from '@/infra/Firebase'
 import { mockAddAccountParams } from '../../domain/mocks'
 import { FirestoreErrorCode, mockAddDocResponse, MockFirestore } from './mocks'

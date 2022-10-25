@@ -3,7 +3,7 @@ import {
   HttpResponse,
   HttpStatus,
   HttpClient,
-} from '@/data/protocols/http'
+} from '@/common/http'
 
 import { faker } from '@faker-js/faker'
 
