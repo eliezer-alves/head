@@ -17,6 +17,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '@/tests/(.*)': '<rootDir>/tests/$1',
+    '@/user/(.*)': '<rootDir>/src/modules/user/$1',
     '@/(.*)': '<rootDir>/src/$1',
     '\\.scss$': 'identity-obj-proxy',
   },
