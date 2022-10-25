@@ -35,6 +35,6 @@
         "@typescript-eslint/consistent-type-definitions": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-namespace": "warn"
+        "@typescript-eslint/no-namespace": "off"
     }
 }
