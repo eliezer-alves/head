@@ -1,9 +1,10 @@
+import { vi } from 'vitest'
 import { HttpClient, HttpRequest, HttpStatus } from '@/common/http'
 import { AdapterFirestore } from '@/infra/Firebase'
 import { FirestoreErrorCode, MockFirestore } from './mocks'
 import { faker } from '@faker-js/faker'
 
-jest.mock('firebase/firestore')
+vi.mock('firebase/firestore')
 
 const mockDeleteHttpRequest = (): HttpRequest => ({
   url: faker.internet.url(),

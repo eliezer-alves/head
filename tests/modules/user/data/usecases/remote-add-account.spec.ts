@@ -1,11 +1,11 @@
-import { RemoteAddAccount } from '@/user/data/usecases'
+import { RemoteAddAccount } from '@user/data/usecases'
 import { HttpStatus } from '@/common/http'
 import { EmailInUseError, UnexpectedError } from '@/common/errors'
 import {
   mockAddAccountParams,
   mockAddAccountModel,
 } from '@/../tests/modules/user/domain/mocks'
-import { HttpClientSpy } from '@/tests/common/http'
+import { HttpClientSpy } from '@tests/common/http'
 
 import { faker } from '@faker-js/faker'
 

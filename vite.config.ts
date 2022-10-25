@@ -7,6 +7,10 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
+      {
+        find: '@user',
+        replacement: path.resolve(__dirname, 'src/modules/user'),
+      },
       { find: '@', replacement: path.resolve(__dirname, 'src') },
       { find: '@tests', replacement: path.resolve(__dirname, 'tests') },
     ],

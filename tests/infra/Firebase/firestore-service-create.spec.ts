@@ -1,9 +1,10 @@
+import { vi } from 'vitest'
 import { HttpClient, HttpRequest, HttpStatus } from '@/common/http'
 import { AdapterFirestore } from '@/infra/Firebase'
 import { mockAddAccountParams } from '../../modules/user/domain/mocks'
 import { FirestoreErrorCode, mockAddDocResponse, MockFirestore } from './mocks'
 
-jest.mock('firebase/firestore')
+vi.mock('firebase/firestore')
 
 const addNewUserRequest: HttpRequest = {
   url: 'users/',

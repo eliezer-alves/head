@@ -1,4 +1,4 @@
-import { RemoteAddAccount } from '@/user/data/usecases'
+import { RemoteAddAccount } from '@user/data/usecases'
 import { AdapterFirestore } from '@/infra/Firebase'
 import {
   mockAddAccountParams,

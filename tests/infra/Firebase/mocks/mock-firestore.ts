@@ -1,3 +1,4 @@
+import { Mocked, vi } from 'vitest'
 import * as firestore from 'firebase/firestore'
 import { faker } from '@faker-js/faker'
 
@@ -34,7 +35,7 @@ export class FirestoreError extends Error {
 }
 
 export class MockFirestore {
-  private mockedFirestore = firestore as jest.Mocked<typeof firestore>
+  private mockedFirestore = firestore as Mocked<typeof firestore>
   private isError = false
   private errorCode?: FirestoreErrorCode
   private errorMessage?: string = 'Mocked Firestore Error'
@@ -53,7 +54,7 @@ export class MockFirestore {
 
   public mockDoc(id = mockId(), path = mockPath()) {
     this.mockedFirestore.doc.mockImplementation(
-      jest.fn().mockImplementation(() => ({
+      vi.fn().mockImplementation(() => ({
         id,
         path,
       })),
@@ -71,7 +72,7 @@ export class MockFirestore {
       })
     } else {
       this.mockedFirestore.getDoc.mockImplementation(
-        jest.fn().mockImplementation(() =>
+        vi.fn().mockImplementation(() =>
           Promise.resolve({
             id: id,
             data: () => {
