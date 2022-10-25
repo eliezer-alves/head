@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { HttpClient, HttpResponse, HttpStatus } from '@/data/protocols/http'
+import { HttpClient, HttpResponse, HttpStatus } from '@/common/http'
 import { AccessDeniedError, UnexpectedError } from '@/domain/errors'
 
 type ApppwriteResponse = any

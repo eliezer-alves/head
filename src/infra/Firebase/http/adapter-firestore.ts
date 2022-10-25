@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpResponse,
   HttpStatus,
-} from '@/data/protocols/http'
+} from '@/common/http'
 
 import { db } from '../config/connection'
 import {
