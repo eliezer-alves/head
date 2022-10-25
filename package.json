@@ -12,8 +12,9 @@
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
     "clear_jest": "jest --clearCache",
-    "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix"
+    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js .",
+    "lint-fix": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js . --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "appwrite": "^10.1.0",
@@ -45,6 +46,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.10",
     "git-commit-msg-linter": "^4.2.1",
+    "husky": "^8.0.1",
     "jest-environment-jsdom": "^29.2.1",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.17",
