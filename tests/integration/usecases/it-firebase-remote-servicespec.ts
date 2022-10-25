@@ -23,17 +23,4 @@ describe('FirebaseRemoteService', () => {
 
     expect(account)
   })
-
-  // test('HttpClient should return 200 when deleting an existing record', async () => {
-  //   if (!context.id) return
-
-  //   const sut = new RemoteRemoveAccount('users-test', httpClient)
-  //   const httpResult = {
-  //     status: HttpStatus.ok,
-  //   }
-
-  //   const response = await sut.add(accountParams)
-
-  //   expect(response).toEqual(httpResult)
-  // })
 })
