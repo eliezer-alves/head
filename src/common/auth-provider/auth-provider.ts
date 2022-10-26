@@ -9,5 +9,5 @@ export enum AuthStatus {
 
 export type AuthResponse<T = any> = {
   status: AuthStatus
-  body?: T
+  body?: any
 }
