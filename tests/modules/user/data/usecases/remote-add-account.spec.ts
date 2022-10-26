@@ -7,6 +7,7 @@ import {
 } from '@/../tests/modules/user/domain/mocks'
 import { HttpClientSpy } from '@tests/common/http'
 
+import { describe, expect, test } from 'vitest'
 import { faker } from '@faker-js/faker'
 
 type SutTypes = {
