@@ -1,7 +1,7 @@
 import { UserModel } from '../models'
 
 export interface ExternalProviderLogin {
-  make: () => Promise<ExternalProviderLogin.Model>
+  exec: () => Promise<ExternalProviderLogin.Model>
 }
 
 export namespace ExternalProviderLogin {
