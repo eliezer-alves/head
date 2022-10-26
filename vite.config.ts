@@ -8,6 +8,10 @@ export default defineConfig({
   resolve: {
     alias: [
       {
+        find: '@auth',
+        replacement: path.resolve(__dirname, 'src/modules/auth'),
+      },
+      {
         find: '@user',
         replacement: path.resolve(__dirname, 'src/modules/user'),
       },
