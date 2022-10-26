@@ -4,6 +4,7 @@ import { ExternalAuthProviderSpy } from '@/../tests/common/external-auth-provide
 import { describe, expect, it } from 'vitest'
 import { AuthStatus } from '@/common/auth-provider'
 import { UnexpectedError } from '@/common/errors'
+import { mockUserModel } from '../../domain/mocks/mock-user'
 
 type SutTypes = {
   sut: ExternalProviderLogin
@@ -34,5 +35,18 @@ describe('Auth - External Provider Login', () => {
     const promise = sut.exec()
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
+
+  it('Should return an UserModel if AuthProvider returns 200', async () => {
+    const { sut, externalProviderSpy } = makeSut()
+    const authResult = mockUserModel()
+    externalProviderSpy.response = {
+      status: AuthStatus.ok,
+      body: authResult,
+    }
+
+    const promise = await sut.exec()
+
+    expect(promise).toEqual(authResult)
   })
 })
