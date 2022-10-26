@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 describe('Connection Firebase', () => {
-  it('Environment variables must be different from null', () => {
+  it('Should environment variables must be different from null', () => {
     const firebaseConfig = {
       apiKey: import.meta.env.VITE_API_KEY,
       authDomain: import.meta.env.VITE_AUTH_DOMAIN,
