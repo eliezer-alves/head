@@ -1,8 +1,9 @@
 import { AuthProvider, AuthStatus } from '@/common/auth-provider'
 import { UnexpectedError } from '@/common/errors'
 import { UserModel } from '../../domain/models'
+import { LoginWithExternalProvider } from '../../domain/usecases'
 
-export class ExternalProviderLogin {
+export class RemoteLogin implements LoginWithExternalProvider {
   constructor(private readonly authProvider: AuthProvider<UserModel>) {}
 
   async exec(): Promise<any> {
