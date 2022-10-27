@@ -1,4 +1,4 @@
-import { ExternalProviderLogin } from '@auth/data/usecases'
+import { RemoteLogin } from '@auth/data/usecases'
 import { ExternalAuthProviderSpy } from '@/../tests/common/external-auth-provider'
 
 import { describe, expect, it } from 'vitest'
@@ -7,13 +7,13 @@ import { UnexpectedError } from '@/common/errors'
 import { mockUserModel } from '../../domain/mocks/mock-user'
 
 type SutTypes = {
-  sut: ExternalProviderLogin
+  sut: RemoteLogin
   externalProviderSpy: ExternalAuthProviderSpy
 }
 
 const makeSut = (): SutTypes => {
   const externalProviderSpy = new ExternalAuthProviderSpy()
-  const sut = new ExternalProviderLogin(externalProviderSpy)
+  const sut = new RemoteLogin(externalProviderSpy)
   return {
     sut,
     externalProviderSpy,
@@ -21,7 +21,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Auth - External Provider Login', () => {
-  it('Should instantiate the ExternalProviderLogin use case', () => {
+  it('Should instantiate the RemoteLogin use case', () => {
     const { sut } = makeSut()
     expect(sut).not.toBeNull()
   })
