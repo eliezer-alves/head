@@ -30,6 +30,9 @@
       "@auth/*": [
         "./modules/auth/*"
       ],
+      "@customer/*": [
+        "./modules/customer/*"
+      ],
       "@user/*": [
         "./modules/user/*"
       ],

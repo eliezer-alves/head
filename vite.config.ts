@@ -12,6 +12,10 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/modules/auth'),
       },
       {
+        find: '@customer',
+        replacement: path.resolve(__dirname, 'src/modules/customer'),
+      },
+      {
         find: '@user',
         replacement: path.resolve(__dirname, 'src/modules/user'),
       },
