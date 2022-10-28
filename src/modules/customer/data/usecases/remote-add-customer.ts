@@ -7,7 +7,7 @@ export class RemoteAddCustomer {
     private readonly url: string,
     private readonly httpClient: HttpClient<AddCustomer.Model>,
   ) {}
-  async exec(params: AddCustomer.Params): Promise<any> {
+  async exec(params: AddCustomer.Params): Promise<AddCustomer.Model> {
     const httpResponse = await this.httpClient.request({
       method: 'post',
       url: this.url,
