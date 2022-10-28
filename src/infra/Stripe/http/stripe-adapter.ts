@@ -5,7 +5,7 @@ import { StripeErrors } from './stripe-errors'
 //   if
 // }
 
-export class AdapterStripe {
+export class StripeAdapter {
   public response: HttpResponse<any> = {
     status: HttpStatus.ok,
   }
