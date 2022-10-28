@@ -4,6 +4,7 @@ import { HttpStatus } from '@/common/http'
 import { RemoteAddCustomer } from '@customer/data/usecases'
 import { faker } from '@faker-js/faker'
 import { describe, expect, it } from 'vitest'
+import { mockCustomerModel } from '../../domain/mocks'
 import { mockAddCustomerParams } from '../../domain/mocks/mock-add-customer'
 
 type SutTypes = {
@@ -59,7 +60,7 @@ describe('RemoteAddCustomer', () => {
 
     const promise = sut.exec(mockAddCustomerParams())
 
-    await expect(promise).rejects.toThrow(new AccessDeniedError())
+    await expect(promise).rejects.toThrow(new UnexpectedError())
   })
 
   it('Should throw UnexpectedError if HttpClient returns 500', async () => {
@@ -69,5 +70,18 @@ describe('RemoteAddCustomer', () => {
     const promise = sut.exec(mockAddCustomerParams())
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
+
+  it('Should return an UserModel if HttpClient returns 200', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    const httpResult = mockCustomerModel()
+    httpClientSpy.response = {
+      status: HttpStatus.ok,
+      body: httpResult,
+    }
+
+    const customer = await sut.exec(mockAddCustomerParams())
+
+    expect(customer).toEqual(httpResult)
   })
 })
