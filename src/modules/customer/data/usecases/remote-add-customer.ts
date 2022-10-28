@@ -1,4 +1,5 @@
-import { HttpClient } from '@/common/http'
+import { AccessDeniedError, UnexpectedError } from '@/common/errors'
+import { HttpClient, HttpStatus } from '@/common/http'
 import { AddCustomer } from '@customer/domain/usecases'
 
 export class RemoteAddCustomer {
@@ -7,11 +8,20 @@ export class RemoteAddCustomer {
     private readonly httpClient: HttpClient<AddCustomer.Model>,
   ) {}
   async exec(params: AddCustomer.Params): Promise<any> {
-    return this.httpClient.request({
+    const httpResponse = await this.httpClient.request({
       method: 'post',
       url: this.url,
       body: params,
     })
+
+    switch (httpResponse.status) {
+      case HttpStatus.ok:
+        return httpResponse.body
+      case HttpStatus.forbidden:
+        throw new AccessDeniedError()
+      default:
+        throw new UnexpectedError()
+    }
   }
 }
 
