@@ -1,5 +1,5 @@
 import { HttpClientSpy } from '@/../tests/common/http'
-import { UnexpectedError } from '@/common/errors'
+import { AccessDeniedError, UnexpectedError } from '@/common/errors'
 import { HttpStatus } from '@/common/http'
 import { RemoteAddCustomer } from '@customer/data/usecases'
 import { faker } from '@faker-js/faker'
@@ -42,6 +42,15 @@ describe('RemoteAddCustomer', () => {
     const promise = sut.exec(mockAddCustomerParams())
 
     await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
+
+  it('Should throw UnexpectedError if HttpClient returns 403', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response.status = HttpStatus.forbidden
+
+    const promise = sut.exec(mockAddCustomerParams())
+
+    await expect(promise).rejects.toThrow(new AccessDeniedError())
   })
 
   it('Should throw UnexpectedError if HttpClient returns 500', async () => {
