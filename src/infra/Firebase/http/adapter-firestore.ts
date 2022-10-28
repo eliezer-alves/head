@@ -42,6 +42,7 @@ export class AdapterFirestore implements HttpClient {
       this.response.status = HttpStatus.ok
       this.response.body = {
         id: firestoreResponse.id,
+        ...data,
       }
     } else {
       this.response = {
