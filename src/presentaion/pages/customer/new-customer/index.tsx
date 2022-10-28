@@ -8,8 +8,15 @@ const addCustomer = new RemoteAddCustomer('test_stripe_customers', httpClient)
 
 export const NewCustomer = () => {
   const [formIsValid, setFormIsValid] = useState(false)
+
   const nameRef = useRef<any>()
   const emailRef = useRef<any>()
+
+  const resetForm = () => {
+    nameRef.current.value = ''
+    emailRef.current.value = ''
+    setFormIsValid(false)
+  }
 
   const validateForm = () => {
     const isValid =
@@ -20,9 +27,14 @@ export const NewCustomer = () => {
 
   const handleSubit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    addCustomer.exec({
-      name: nameRef.current.value,
-    })
+    addCustomer
+      .exec({
+        name: nameRef.current.value,
+        email: emailRef.current.value,
+      })
+      .then(() => {
+        resetForm()
+      })
   }
 
   return (
