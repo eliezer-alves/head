@@ -1,7 +1,7 @@
 import { CustomerModel } from '../models'
 
 export interface AddCustomer {
-  exec: () => Promise<void>
+  exec: (params: AddCustomer.Params) => Promise<AddCustomer.Model>
 }
 
 export namespace AddCustomer {
