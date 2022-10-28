@@ -1,5 +1,10 @@
+import { FormEvent, useRef, useState } from 'react'
 import { Main, Page } from '@/presentaion/components'
-import { useRef, useState } from 'react'
+import { AdapterFirestore } from '@/infra/Firebase'
+import { RemoteAddCustomer } from '@/modules/customer/data/usecases'
+
+const httpClient = new AdapterFirestore()
+const addCustomer = new RemoteAddCustomer('test_stripe_customers', httpClient)
 
 export const NewCustomer = () => {
   const [formIsValid, setFormIsValid] = useState(false)
@@ -13,11 +18,18 @@ export const NewCustomer = () => {
     setFormIsValid(!!isValid)
   }
 
+  const handleSubit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    addCustomer.exec({
+      name: nameRef.current.value,
+    })
+  }
+
   return (
     <Page>
       <Main>
         <h2 className="mb-10">Become a Customer!</h2>
-        <form onChange={validateForm}>
+        <form onChange={validateForm} onSubmit={handleSubit}>
           <input
             id="test"
             ref={nameRef}
