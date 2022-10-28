@@ -1,8 +1,8 @@
 import { RemoteAddCustomer } from '@customer/data/usecases'
-import { faker } from '@faker-js/faker'
+import { mockCustomerModel } from './mock-customer'
 
 export const mockAddCustomerParams = (): RemoteAddCustomer.Params => {
-  return {
-    name: faker.name.fullName(),
-  }
+  const params = mockCustomerModel()
+  delete params.id
+  return params
 }
