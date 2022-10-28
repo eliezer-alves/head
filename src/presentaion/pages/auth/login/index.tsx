@@ -1,13 +1,13 @@
 import { AuthProvider } from '@/common/auth-provider'
 import { AdapterAuthProvider } from '@/infra/Firebase'
-import { ExternalProviderLogin } from '@/modules/auth/data/usecases'
+import { RemoteLogin } from '@/modules/auth/data/usecases'
 import { Main, Page } from '@/presentaion/components'
 import googleIcon from './img/google-icon.png'
 
 export const Login = () => {
   const handleLogin = async () => {
     const authProvider: AuthProvider = new AdapterAuthProvider()
-    const makeLogin = new ExternalProviderLogin(authProvider)
+    const makeLogin = new RemoteLogin(authProvider)
 
     await makeLogin.exec()
   }

@@ -1,1 +1,1 @@
-export * from './remote-provider-login'
+export * from './login-with-external-provider'
