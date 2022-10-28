@@ -53,6 +53,15 @@ describe('RemoteAddCustomer', () => {
     await expect(promise).rejects.toThrow(new AccessDeniedError())
   })
 
+  it('Should throw UnexpectedError if HttpClient returns 404', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response.status = HttpStatus.notFound
+
+    const promise = sut.exec(mockAddCustomerParams())
+
+    await expect(promise).rejects.toThrow(new AccessDeniedError())
+  })
+
   it('Should throw UnexpectedError if HttpClient returns 500', async () => {
     const { sut, httpClientSpy } = makeSut()
     httpClientSpy.response.status = HttpStatus.serverError
