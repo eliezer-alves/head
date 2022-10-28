@@ -1,4 +1,6 @@
 import { HttpClientSpy } from '@/../tests/common/http'
+import { UnexpectedError } from '@/common/errors'
+import { HttpStatus } from '@/common/http'
 import { RemoteAddCustomer } from '@customer/data/usecases'
 import { faker } from '@faker-js/faker'
 import { describe, expect, it } from 'vitest'
@@ -32,5 +34,13 @@ describe('RemoteAddCustomer', () => {
     expect(httpClientSpy.url).toBe(url)
     expect(httpClientSpy.body).toEqual(addCusmoerParams)
   })
-  it.todo('Deve retornar o model CustomerModel em caso de sucesso')
+
+  it('Should throw UnexpectedError if HttpClient returns 400', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response.status = HttpStatus.badRequest
+
+    const promise = sut.exec(mockAddCustomerParams())
+
+    await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
 })
