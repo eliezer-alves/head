@@ -5,9 +5,7 @@ export interface AddCustomer {
 }
 
 export namespace AddCustomer {
-  export type Params = {
-    name: string
-  }
+  export type Params = Omit<CustomerModel, 'id'>
 
   export type Model = CustomerModel
 }
