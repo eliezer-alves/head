@@ -10,8 +10,9 @@ const mockPath = (): string => {
   return faker.internet.url()
 }
 
-export const mockAddDocResponse = (): any => ({
+export const mockAddDocResponse = (data: object = null): any => ({
   id: mockId(),
+  ...data,
 })
 
 export const mockGetDocResponse = (): any => ({

@@ -42,7 +42,7 @@ describe('AdapterHttpFirestoreCreate', () => {
 
   test('Should return correct response', async () => {
     const { sut, mockFirestore } = makeSut()
-    const addDockResponse = mockAddDocResponse()
+    const addDockResponse = mockAddDocResponse(addNewUserRequest.body)
     const expectedResponse = {
       status: HttpStatus.ok,
       body: addDockResponse,
