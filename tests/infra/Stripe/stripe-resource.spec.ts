@@ -3,7 +3,7 @@ import { stripe } from '@/infra/Stripe/config/connection'
 import { StripeResource } from '@/infra/Stripe/resources'
 
 describe('Stripe Resourcer', () => {
-  it("should correctly instantiate Stripe's customers.create resource", async () => {
+  it("Should correctly instantiate Stripe's customers.create resource", async () => {
     const sut = StripeResource('/customer', 'post')
     expect(sut).equals(stripe.customers.create)
   })
